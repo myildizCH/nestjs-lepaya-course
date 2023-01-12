@@ -8,7 +8,7 @@ import {
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom, map } from 'rxjs';
-import { BaseUrl } from 'src/courses/enum';
+import { BaseUrl } from './../courses/enum';
 
 @Injectable()
 export class CustomHttpService {

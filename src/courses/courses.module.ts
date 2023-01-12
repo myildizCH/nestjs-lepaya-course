@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CustomHttpModule } from 'src/http/http.module';
+import { CustomHttpModule } from './../http/http.module';
 import { CoursesController } from './courses.controller';
 import { CoursesService } from './courses.service';
 
