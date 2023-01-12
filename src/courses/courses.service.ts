@@ -3,12 +3,13 @@ import { CustomHttpService } from 'src/http/http.service';
 import { HRCourseInputDTO } from './dto/hr-course-input.dto';
 import { HRLearner, HRLearnerInputDTO } from './dto/hr-learner-input.dto';
 import { HRTrainerInputDTO } from './dto/hr-trainer-input.dto';
+import { LepayaCourseOutputDTO } from './dto/lepaya-course-output.dto';
 
 @Injectable()
 export class CoursesService {
   constructor(private readonly httpService: CustomHttpService) {}
 
-  async getCourseById(id: string): Promise<any> {
+  async getCourseById(id: string): Promise<LepayaCourseOutputDTO> {
     // Fetch course by id
     const course: HRCourseInputDTO = await this.httpService.fetch(
       'courses',
@@ -31,6 +32,10 @@ export class CoursesService {
       course.learners.includes(learner.id),
     );
 
-    return { course, trainer, filteredLearnersList };
+    return LepayaCourseOutputDTO.buildResponse(
+      course,
+      trainer,
+      filteredLearnersList,
+    );
   }
 }
