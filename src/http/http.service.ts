@@ -8,6 +8,7 @@ import {
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom, map } from 'rxjs';
+import { BaseUrl } from 'src/courses/enum';
 
 @Injectable()
 export class CustomHttpService {
@@ -27,9 +28,7 @@ export class CustomHttpService {
     this.logger.debug(`fetch() for ${path}`);
 
     try {
-      return await this.get<T>(
-        `https://kbfszrxx5vacidgrgdhqzu25r40vyyuw.lambda-url.eu-central-1.on.aws/api/${path}${ID}`,
-      );
+      return await this.get<T>(`${BaseUrl.HR_SYSTEM}${path}${ID}`);
     } catch (error) {
       this.logger.error(error.response.data);
       if (error?.response?.status === HttpStatus.NOT_FOUND) {
